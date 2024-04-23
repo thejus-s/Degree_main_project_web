@@ -1,0 +1,91 @@
+{% extends 'admin/index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form action="/useraddpost" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+  <table width="200" border="1" class="table table-hover">
+    <tr>
+      <th scope="row">Name</th>
+      <td>
+      <input type="text" name="textfield" id="textfield" class="form-control"/></td>
+    </tr>
+    <tr>
+      <th scope="row">Course</th>
+      <td>
+        <select name="select" id="select"required class="form-control">
+
+            {% for i in data %}
+            <option value="{{ i.id }}">{{ i.coursename }}</option>
+            {% endfor %}
+
+      </select></td>
+    </tr>
+    <tr>
+      <th scope="row">Sem</th>
+      <td>
+        <select name="select2" id="select2"required class="form-control">
+            <option>1SEM</option>
+            <option>2SEM</option>
+            <option>3SEM</option>
+            <option>4SEM</option>
+            <option>5SEM</option>
+            <option>6SEM</option>
+      </select></td>
+    </tr>
+    <tr>
+      <th scope="row">Year</th>
+      <td>
+           <select name="select3" id="select3"required class="form-control">
+
+<script>
+  // Get the select element
+  var select = document.getElementById("select3");
+
+  // Set the start and end years
+  var startYear = 2020;
+  var endYear = new Date().getFullYear(); // Gets the current year
+
+  // Add options to the select element for each year in the range
+  for (var year = startYear; year <= endYear; year++) {
+    var option = document.createElement("option");
+    option.text = year;
+    option.value = year;
+    select.appendChild(option);
+  }
+</script>
+{#        <select name="select3" id="select3"required class="form-control">#}
+{#            <option>2021<option>#}
+{#            <option>2022 <option>#}
+{#            <option>2023<option>#}
+{#      </select></td>#}
+    </tr>
+
+
+
+
+
+      <tr>
+          <th>Photo</th>
+          <td><input type="file" name="f" accept="image/*" required class="form-control"></td>
+      </tr>
+      <tr>
+      <th scope="row">Email</th>
+      <td>
+      <input type="email" name="textfield2" id="textfield2" required class="form-control"/></td>
+    </tr>
+
+    <tr align="center">
+      <th colspan="2" scope="row"><input type="submit" name="button" id="button" value="Add" class="btn btn-success" /></th>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,40 @@
+from email.mime import image
+import os
+import smtplib
+from email.mime.text import MIMEText
+from flask_mail import Mail
+
+app=Flask(__name__)
+
+
+
+
+
+
+try:
+        gmail = smtplib.SMTP('smtp.gmail.com', 587)
+
+        gmail.ehlo()
+
+        gmail.starttls()
+
+        gmail.login('vvrr2731@gmail.com', 'ajay1490')
+
+    except Exception as e:
+        print("Couldn't setup email!!" + str(e))
+
+    msg = MIMEText("Your OTP is " +otpvalue)
+
+    msg['Subject'] = 'Verification'
+
+    msg['To'] = email
+
+    msg['From'] = 'vvrr2731@gmail.com'
+
+    try:
+
+        gmail.send_message(msg)
+
+    except Exception as e:
+
+        print("COULDN'T SEND EMAIL", str(e))

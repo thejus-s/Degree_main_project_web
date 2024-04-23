@@ -1,0 +1,42 @@
+{% extends 'election_coordinator/index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/posteditpost/{{ data.id }}">
+    {% csrf_token %}
+  <table width="200" border="1" class="table table-hover">
+    <tr>
+      <th scope="row">Post</th>
+      <td>
+      <select name="textfield" id="textfield" value="{{ data.title }}" required class="form-control">
+        <option {% if data.title == 'Chairman' %}selected{% endif %}>Chairman</option>
+          <option {% if data.title == 'Vice Chairman' %}selected{% endif %}>Vice Chairman</option>
+          <option {% if data.title == 'General Captain' %}selected{% endif %}>General Captain</option>
+          <option {% if data.title == 'General Secretary' %}selected{% endif %}>General Secretary</option>
+          <option {% if data.title == 'Fine Arts Secretary' %}selected{% endif %}>Fine Arts Secretary </option>
+          <option {% if data.title == 'Magazine Editor' %}selected{% endif %}>Magazine Editor</option>
+          <option {% if data.title == 'University Union Councillors' %}selected{% endif %}>University Union Councillors</option>
+          <option {% if data.title == 'Joint Secretary' %}selected{% endif %}>Joint Secretary</option>
+      </select>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">Details</th>
+      <td>
+      <textarea name="textarea" id="textarea" cols="45" rows="5"required class="form-control">{{ data.description }}</textarea></td>
+    </tr>
+    <tr align="center">
+      <th colspan="2" scope="row"><input type="submit" name="button" id="button" value="Add" class="btn btn-success" /></th>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}
+

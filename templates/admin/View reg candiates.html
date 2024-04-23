@@ -1,0 +1,46 @@
+{% extends 'admin/index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="200" border="1" class="table table-bordered table-hover">
+    <tr style="background: #06BBCC; color: white">
+      <th scope="col">#</th>
+      <th scope="col">Student</th>
+      <th scope="col">Post</th>
+      <th scope="col" >Document</th>
+      <th scope="col" width="30%">Details</th>
+        <th scope="col">Supporter 1</th>
+      <th scope="col">Supporter 2</th>
+      <th scope="col">Status</th>
+
+    </tr>
+        {% for foo in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ foo.USER.name  }}</td>
+      <td>&nbsp;{{ foo.POST.post }}</td>
+      <td><a href="{{ foo.Document }}">Document</a></td>
+      <td>{{ foo.details }}</td>
+ <td>{{ foo.CCANDIDATE1.name  }}<br>{{ foo.CCANDIDATE1.course  }}</td>
+      <td>{{ foo.CCANDIDATE2.name  }}<br>{{ foo.CCANDIDATE2.course  }}</td>
+     {% if foo.status == 'pending' %}
+      <td align="center"><p><a href="/acceptcan/{{ foo.id }}/{{ foo.USER.email }}#home" class="btn btn-success" style="width: 85%">Accept</a></p>
+      <p><a href="/sendreason/{{ foo.id }}/{{ foo.USER.email }}#home"class="btn btn-danger" style="width: 85%">Reject</a></p></td>
+    {% else %}
+
+      <td>{{ foo.status }}</td>
+    {% endif %}
+    </tr>
+       {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}
